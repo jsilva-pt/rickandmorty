@@ -8,9 +8,13 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      redirect: '/characters'
+    },
+    {
       path: '/:resource',
       name: 'entity-list',
       component: () => import(/* webpackChunkName: "EntityList" */ './views/EntityList.vue')
-    },
+    }
   ]
 })
