@@ -9,7 +9,7 @@
           {{ link.label }}
         </router-link>
         <span
-          :key="link.code"
+          :key="index"
           v-if="!isLastLink(index)"> | </span>
       </template>
     </div>
