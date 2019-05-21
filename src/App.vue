@@ -1,12 +1,48 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <template v-for="(link, index) in links">
+        <router-link
+          :key="link.code"
+          :to="`/${link.code}`"
+        >
+          {{ link.label }}
+        </router-link>
+        <span
+          :key="link.code"
+          v-if="!isLastLink(index)"> | </span>
+      </template>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      links: [{
+        code: 'characters',
+        label: 'Characters'
+      },
+      {
+        code: 'locations',
+        label: 'Locations'
+      },
+      {
+        code: 'episodes',
+        label: 'Episodes'
+      }]
+    }
+  },
+  methods: {
+    isLastLink(index) {
+      return index == (this.links.length - 1)
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -25,7 +61,7 @@
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+#nav a.router-link-active {
   color: #42b983;
 }
 </style>
